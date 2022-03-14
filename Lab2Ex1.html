@@ -39,49 +39,53 @@
         
 	graphics.clearRect(0,0,600,600);
 	    
-        //React
-        graphics.fillStyle = "#FF8C00"; 
-        graphics.fillRect(210, 210, 180, 180);
+        //Cross
+        graphics.beginPath();
+        graphics.fillStyle = "#FF0000"; 
+        graphics.fillRect(200, 265, 180, 65);
+        graphics.fillRect(255, 210, 65, 175);
         graphics.lineWidth = 2.5;
-        graphics.strokeRect(210, 210, 180, 180);
+        graphics.strokeRect(200, 265, 180, 65);
+        graphics.strokeRect(255, 210, 65, 175);
+        graphics.fillRect(202, 266, 177, 63);
+        graphics.fillRect(256, 212, 63, 171);
+        graphics.closePath();
 
         //Mouth
-        graphics.translate(0,85)
+        graphics.translate(-10,70)
         graphics.beginPath();
         graphics.fillStyle = "#000000";
         graphics.moveTo(280, 250);
         graphics.bezierCurveTo(296, 275, 310, 265, 320, 250)
         graphics.bezierCurveTo(315, 255, 290, 255, 280, 250)
-		graphics.fill(); 
-		graphics.moveTo(279, 245);
+	graphics.fill(); 
+	graphics.moveTo(279, 245);
         graphics.bezierCurveTo(280, 250, 279, 250, 277, 252);
         graphics.moveTo(321, 245);
         graphics.bezierCurveTo(320, 251, 319, 250, 323, 252);
-		graphics.stroke(); 
+	graphics.stroke(); 
         
         //Teeth
         graphics.beginPath();
-		graphics.fillStyle = "#FFFFFF";
+	graphics.fillStyle = "#FFFFFF";
         graphics.fillRect(295, 254, 12, 5);
-        graphics.lineWidth = 0.5;
-        // graphics.strokeRect(296, 254, 6, 5);
-        // graphics.strokeRect(301, 254, 6, 5);
+        graphics.lineWidth = 0.5:
         graphics.strokeRect(301, 254, 0, 5);
         graphics.closePath();
         
         //Eyes
         graphics.beginPath();
         graphics.fillStyle = "#FFFFFF"; 
-        graphics.fillCircle(255,185,10);
-        graphics.fillCircle(335,185,10);
+        graphics.fillCircle(275,205,9);
+        graphics.fillCircle(320,205,9);
 
         graphics.fillStyle = "#000000"; 
-        graphics.fillCircle(255,185,5.5);
-        graphics.fillCircle(335,185,5.5);
+        graphics.fillCircle(275,205,5.5);
+        graphics.fillCircle(320,205,5.5);
 
         graphics.fillStyle = "#FFFFFF"; 
-        graphics.fillCircle(252,182,2);
-        graphics.fillCircle(332,182,2);
+        graphics.fillCircle(272,202,2);
+        graphics.fillCircle(317,202,2);
         graphics.closePath();     
         
     } // end of draw()
