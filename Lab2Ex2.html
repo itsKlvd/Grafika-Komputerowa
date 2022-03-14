@@ -138,8 +138,12 @@
                 // graphics.fill();
                 // graphics.stroke();
                 // graphics.closePath();
-                graphics.fillPoly(x-60,y+0,x+0,y-50,x+60,y+0,x+30,y+60,x-30,y+60,x-60,y+0);
-                graphics.strokePoly(x-60,y+0,x+0,y-50,x+60,y+0,x+30,y+60,x-30,y+60,x-60,y+0);
+                //graphics.fillPoly(x-60,y+0,x+0,y-50,x+60,y+0,x+30,y+60,x-30,y+60,x-60,y+0);
+                //graphics.strokePoly(x-60,y+0,x+0,y-50,x+60,y+0,x+30,y+60,x-30,y+60,x-60,y+0);
+		graphics.fillPoly(x-10,y+30,x+10,y+30,x+22,y+22,x+30,y+10,x+30,y-10,x+22,y-22,  
+                                  x+10,y-30,x-10,y-30,x-22,y-22,x-30,y-10,x-30,y+10,x-22,y+22);
+                graphics.strokePoly(x-10,y+30,x+10,y+30,x+22,y+22,x+30,y+10,x+30,y-10,x+22,y-22,    
+                                  x+10,y-30,x-10,y-30,x-22,y-22,x-30,y-10,x-30,y+10,x-22,y+22);
                 
             }
             
@@ -299,7 +303,7 @@
 <p><b>Tool:</b>
     <select id="toolChoice">
         <option value="1">Kwadrat</option>
-        <option value="2">Pięciokąt</option>
+        <option value="2">Dwunastokąt</option>
 
     </select>
 </p>
