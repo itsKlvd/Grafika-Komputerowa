@@ -114,19 +114,36 @@ public class Lab6 extends GLJPanel implements GLEventListener  {
 	} // end display()
 
 	public void Pyramid(GL2 gl2,int numVertices){
-        double angleIncrement = 2 * Math.PI / numVertices;
-        angle = 0;
-        for (int i = 1; i <= numVertices; i++) {
-            gl2.glBegin(GL2.GL_POLYGON);
-            x = (float) (radius * Math.cos(angle));
-            z = (float) (radius * Math.sin(angle));
-            gl2.glVertex3f( x, -2.0f, z );
-            gl2.glVertex3f( 0, 5, 0 );
-            angle = i * angleIncrement;
-            gl2.glMaterialfv(GL2.GL_FRONT, GL2.GL_DIFFUSE, materials[i],8);//gradient
-            gl2.glVertex3f((float) (radius * Math.cos(angle)), -2.0f,(float) (radius * Math.sin(angle)));
-            gl2.glEnd();
-        }
+        int n = 12;
+	        int r = 5;
+	        float y = -1;
+	        int h = 6;
+	        float x,z;
+
+	        gl2.glBegin(GL2.GL_TRIANGLES);
+
+	        gl2.glMaterialfv( GL2.GL_FRONT_AND_BACK, GL2.GL_DIFFUSE, materials[7], 4 );
+//	        gl2.glMaterialfv( GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT, materials[7], 0);
+//	        gl2.glMaterialfv( GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, materials[7], 8 );
+//	        gl2.glMaterialf( GL2.GL_FRONT_AND_BACK, GL2.GL_SHININESS, materials[7][12] );
+//	        
+	        float x0 = (float) Math.sin(0)*r;
+	        float z0= (float) Math.cos(0)*r;
+	        for (int i = 0; i <= n; i ++)
+	        {
+	            x = (float) Math.sin(i * 2 * Math.PI / n)*r;
+	            z = (float) Math.cos(i * 2 * Math.PI / n)*r;
+	            //calculating normal
+	            float[] U = {x0-x,y-y,z0-z};
+	            float[] V = {x0-0, y-h, z0-0};
+	            gl2.glNormal3f(U[1]*V[2]-U[2]*V[1],U[2]*V[0]-U[0]*V[2],U[0]*V[1]-U[1]*V[0]);
+	            gl2.glVertex3f(x0, y, z0);
+	            x0=x;
+	            z0=z;
+	            gl2.glVertex3f(x, y, z);
+	            gl2.glVertex3f(0, h, 0);
+	        }
+	        gl2.glEnd();
 
     }
 	/** The init method is called once, before the window is opened, to initialize
@@ -144,6 +161,16 @@ public class Lab6 extends GLJPanel implements GLEventListener  {
 		gl2.glEnable(GL2.GL_LIGHTING);  
 		gl2.glEnable(GL2.GL_LIGHT0);
 		// TODO configure better lighting!
+		float[] blue1  = {0.4f, 0.4f, 0.4f, 1};
+		float[] blue2  = {0, 0, 0.8f, 1};
+		float[] blue3  = {0.3f, 0.15f, 0.15f, 1};
+		gl2.glLightfv (gl2.GL_LIGHT1, gl2.GL_DIFFUSE, blue1,0);
+		gl2.glLightfv (gl2.GL_LIGHT1, gl2.GL_SPECULAR, blue2,0);
+		gl2.glLightfv (gl2.GL_LIGHT1, gl2.GL_AMBIENT, blue3,0);
+		float[] position = {0,1,1,0};
+		gl2.glLightfv (gl2.GL_LIGHT1, GLLightingFunc.GL_POSITION, position, 0);
+		gl2.glEnable(GL2.GL_LIGHT1);
+	    
 	}
 
 
