@@ -81,32 +81,17 @@ public class lab5 extends GLJPanel implements GLEventListener, KeyListener {
     }
 
     private void Corkscrew(double n, GL2 gl2) {
-    	
-        double pi = Math.PI;
-        double t = 5;
-        double r = 3;
-        double kat, nastKat, x, y, z, h;
-
-        h = t / 1550; 
-        y = -5;
-        kat = 0;
-        gl2.glLineWidth(1);
-
-
-       
-        gl2.glBegin(GL.GL_LINE_STRIP);
-        gl2.glColor3f(1, 1, 1);
-        while (y <= t) {
-            nastKat = (kat * pi / 180);
-            x = Math.cos(nastKat) * r;
-            z = Math.sin(nastKat) * r;
-            
-            gl2.glVertex3d(x, y, z);
-            y+=h;
-            kat += (n / 9);
-            
-        }
-        gl2.glEnd();
+    	gl2.glRotatef(-90, 1, 0, 0);
+    	gl2.glTranslatef(0, 0, -6);
+    	gl2.glColor3f(255,255,255);
+		for (int i =0; i<250; i++)
+		{
+			gl2.glPointSize(1+i/30);
+			gl2.glBegin(GL_POINTS);
+			gl2.glVertex3f(	(float)(2 * Math.cos(i * 2 * Math.PI / 35)),
+							(float)(2 * Math.sin(i * 2 * Math.PI / 35)),0.05f * i);
+			gl2.glEnd();
+		}
     }
 
     private void draw(GL2 gl2) {
