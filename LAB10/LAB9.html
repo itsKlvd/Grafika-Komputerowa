@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+ <style>
+	body 
+	{
+        /* margin-top: -250px; */
+        margin-left: -800px;
+	}
+
+	canvas 
+	{
+    width: 100%;
+    height: 100%;
+	}
+</style> 
+<script src="https://cdn.jsdelivr.net/npm/three@0.115/build/three.js"></script>
+</head>
+<body>
+<script>
+let canvas = document.getElementById("glcanvas");
+
+const scene = new THREE.Scene({color: 0x000000});
+
+const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+document.body.appendChild(renderer.domElement);
+
+const light = new THREE.PointLight( 0xffffff, 1, 300 );
+light.position.set(-2, -0.1, 0.1);
+camera.add(light);
+scene.add(camera);
+
+const material = new THREE.MeshPhongMaterial(
+    {
+        color: 0xffffff, 
+    });
+
+let black_rook = new THREE.Group();
+
+const baseGeometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1,100);
+
+const base = new THREE.Mesh(baseGeometry, material);
+black_rook.add(base);
+base.position.y = 0.2;
+
+const rookGeometry_1 = new THREE.CylinderGeometry(0.7,0.7, 0.1, 100);
+const rookPart_1 = new THREE.Mesh(rookGeometry_1, material);
+rookPart_1.position.y=0.2;
+black_rook.add(rookPart_1);
+
+const rookGeometry_2 = new THREE.CylinderGeometry(0.8,0.8, 0.1, 100);
+const rookPart_2 = new THREE.Mesh(rookGeometry_2, material);
+rookPart_2.position.y=0.1;
+black_rook.add(rookPart_2);
+
+const rookGeometry_3 = new THREE.CylinderGeometry(0.4, 0.6, 1.8, 100);
+const rookPart_3 = new THREE.Mesh(rookGeometry_3, material);
+rookPart_3.position.y=1; 	
+black_rook.add(rookPart_3);
+
+const rookGeometry_6 = new THREE.CylinderGeometry(0.6, 0.5, 0.15, 100);
+const rookPart_6 = new THREE.Mesh(rookGeometry_6, material);
+rookPart_6.position.y=1.95;
+black_rook.add(rookPart_6); 
+
+const rookGeometry_7= new THREE.CylinderGeometry(0.7, 0.7, 0.3, 100);
+const rookPart_7 = new THREE.Mesh(rookGeometry_7, material); 
+black_rook.add(rookPart_7);
+rookPart_7.position.y=2.15;	
+
+black_rook.position.set(0,-2,0);
+scene.add(black_rook);
+renderer.render(scene, camera);
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+camera.position.z = 4.5;
+
+animate();
+
+</script>
+</body>
+</html>
