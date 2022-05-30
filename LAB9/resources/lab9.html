@@ -18,12 +18,11 @@ var controls;  // An OrbitControls object that is used to implement
 var animating = false;  // Set to true when an animation is in progress.
 var frameNumber = 0;  // Frame number is advanced by 1 for each frame while animating.
 
-var floor; 
-var pole1,pole2,pole3,pole4,pole5;
-var pivot1,pivot2,pivot3,pivot4,pivot5;
-var roof;
-var roof2;
-var k1,k2,k3,k4,k5,k6;
+var FLOOR; 
+var ROOF;
+var ROOF2;
+var POLE1,POLE2,POLE3,POLE4,POLE5;
+var AXIS1,AXIS2,AXIS3,AXIS4,AXIS5;
 /**
  *  The render function draws the scene.
  */
@@ -52,7 +51,7 @@ function createWorld() {
     scene.add(camera);
     
     //------------------- Create the scene's visible objects ----------------------
-	floor =  new THREE.Mesh(
+	FLOOR =  new THREE.Mesh(
              new THREE.CylinderGeometry(13.5,13.5,0.6,12,1),
              new THREE.MeshPhongMaterial({
                color: 0x441c84,
@@ -61,8 +60,8 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    floor.rotation.y = Math.PI/12;
-    scene.add(floor);
+    FLOOR.rotation.y = Math.PI/12;
+    scene.add(FLOOR);
 	
     var geometry = new THREE.SphereGeometry( 3.7, 32, 32 );
     var material = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('earth.jpg') });
@@ -70,7 +69,8 @@ function createWorld() {
     sphere.position.y=3.8;
     scene.add(sphere);
 	
-	pole1 =  new THREE.Mesh(
+	POLE1
+ =  new THREE.Mesh(
              new THREE.CylinderGeometry(0.3,0.3,7.5,30,1),
              new THREE.MeshPhongMaterial({
                color: 0x7c5426,
@@ -79,13 +79,18 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    pole1.position.x=11.2;
-    pole1.position.y=3.9;
-    pole1.position.z=0.55;
-    pole1.rotation.y = Math.PI/12;
-    scene.add(pole1);
+    POLE1
+    .position.x=11.2;
+    POLE1
+    .position.y=3.9;
+    POLE1
+    .position.z=0.55;
+    POLE1
+    .rotation.y = Math.PI/12;
+    scene.add(POLE1
+);
 
-	pole2 =  new THREE.Mesh(
+	POLE2 =  new THREE.Mesh(
              new THREE.CylinderGeometry(0.3,0.3,7.5,30,1),
              new THREE.MeshPhongMaterial({
                color: 0x7c5426,
@@ -94,13 +99,13 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    pole2.position.x=-9.5;
-    pole2.position.y=3.9;
-    pole2.position.z=6.2;
-	pole2.rotation.y = Math.PI/12;
-	scene.add(pole2);
+    POLE2.position.x=-9.5;
+    POLE2.position.y=3.9;
+    POLE2.position.z=6.2;
+	POLE2.rotation.y = Math.PI/12;
+	scene.add(POLE2);
 
-	pole3 =  new THREE.Mesh(
+	POLE3 =  new THREE.Mesh(
              new THREE.CylinderGeometry(0.3,0.3,7.5,30,1),
              new THREE.MeshPhongMaterial({
                color: 0x7c5426,
@@ -109,13 +114,13 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    pole3.position.x=2.95;
-    pole3.position.y=3.9;
-    pole3.position.z=11;
-	pole3.rotation.y = Math.PI/12;
-	scene.add(pole3);
+    POLE3.position.x=2.95;
+    POLE3.position.y=3.9;
+    POLE3.position.z=11;
+	POLE3.rotation.y = Math.PI/12;
+	scene.add(POLE3);
  
-    pole4 =  new THREE.Mesh(
+    POLE4 =  new THREE.Mesh(
              new THREE.CylinderGeometry(0.3,0.3,7.5,30,1),
              new THREE.MeshPhongMaterial({
                color: 0x7c5426,
@@ -124,14 +129,14 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    pole4.position.x=4;
-    pole4.position.y=3.9;
-    pole4.position.z=-10.5;
-	pole4.rotation.y = Math.PI/12;
-	scene.add(pole4);
+    POLE4.position.x=4;
+    POLE4.position.y=3.9;
+    POLE4.position.z=-10.5;
+	POLE4.rotation.y = Math.PI/12;
+	scene.add(POLE4);
  
  
-    pole5 =  new THREE.Mesh(
+    POLE5 =  new THREE.Mesh(
              new THREE.CylinderGeometry(0.3,0.3,7.5,30,1),
              new THREE.MeshPhongMaterial({
                color: 0x7c5426,
@@ -140,13 +145,13 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    pole5.position.x=-8.7;
-    pole5.position.y=3.9;
-    pole5.position.z=-7.1;
-	pole5.rotation.y = Math.PI/12;
-	scene.add(pole5);
+    POLE5.position.x=-8.7;
+    POLE5.position.y=3.9;
+    POLE5.position.z=-7.1;
+	POLE5.rotation.y = Math.PI/12;
+	scene.add(POLE5);
 		
-	roof =  new THREE.Mesh(
+	ROOF =  new THREE.Mesh(
             new THREE.CylinderGeometry(0.1,12,3,30,1),
             new THREE.MeshPhongMaterial({
                color: 0x441c84,
@@ -155,10 +160,10 @@ function createWorld() {
                shading: THREE.FlatShading
             })
     );
-    roof.position.y=9.1;
-	scene.add(roof);
+    ROOF.position.y=9.1;
+	scene.add(ROOF);
 		 
-	roof2 =  new THREE.Mesh(
+	ROOF2 =  new THREE.Mesh(
              new THREE.CylinderGeometry(12,12,0.3,200,1),
              new THREE.MeshPhongMaterial({
                 color: 0x441c84,
@@ -167,8 +172,8 @@ function createWorld() {
                 shading: THREE.FlatShading
              })
     );
-    roof2.position.y=7.5;
-	  scene.add(roof2);
+    ROOF2.position.y=7.5;
+	  scene.add(ROOF2);
 	
     var loader = new THREE.GLTFLoader();
  
@@ -217,37 +222,46 @@ function createWorld() {
 
 
 		
-	var box1 = new THREE.Box3().setFromObject(pole1,horse1);
-    var box2 = new THREE.Box3().setFromObject(pole2);
-    var box3 = new THREE.Box3().setFromObject(pole3);
-    var box4 = new THREE.Box3().setFromObject(pole4);
-    var box5 = new THREE.Box3().setFromObject(pole5);
+	var box1 = new THREE.Box3().setFromObject(POLE1
+,horse1);
+    var box2 = new THREE.Box3().setFromObject(POLE2);
+    var box3 = new THREE.Box3().setFromObject(POLE3);
+    var box4 = new THREE.Box3().setFromObject(POLE4);
+    var box5 = new THREE.Box3().setFromObject(POLE5);
  
-    box1.center( pole1.position );
-    box2.center( pole2.position );
-    box3.center( pole3.position );
-    box4.center( pole4.position );
-    box5.center( pole5.position );
+    box1.center( POLE1
+.position );
+    box2.center( POLE2.position );
+    box3.center( POLE3.position );
+    box4.center( POLE4.position );
+    box5.center( POLE5.position );
 	
-	pivot1 = new THREE.Group();
-    pivot2 = new THREE.Group();
-    pivot3 = new THREE.Group();
-    pivot4 = new THREE.Group();
-    pivot5 = new THREE.Group();
+	AXIS1
+ = new THREE.Group();
+    AXIS2 = new THREE.Group();
+    AXIS3 = new THREE.Group();
+    AXIS4
+ = new THREE.Group();
+    AXIS5 = new THREE.Group();
  
-    scene.add(pivot1);
-    scene.add(pivot2);
-    scene.add(pivot3);
-    scene.add(pivot4);
-    scene.add(pivot5);
+    scene.add(AXIS1
+);
+    scene.add(AXIS2);
+    scene.add(AXIS3);
+    scene.add(AXIS4
+);
+    scene.add(AXIS5);
 		 
  
-    pivot1.add(pole1);
-    pivot2.add(pole2);
-    pivot3.add(pole3);
-    pivot4.add(pole4);
-    pivot5.add(pole5);
-	pivot3.add(horse1);
+    AXIS1
+.add(POLE1
+);
+    AXIS2.add(POLE2);
+    AXIS3.add(POLE3);
+    AXIS4
+.add(POLE4);
+    AXIS5.add(POLE5);
+	AXIS3.add(horse1);
 
 } // end function createWorld()
 
@@ -260,15 +274,17 @@ function createWorld() {
  */
 function updateForFrame() {
     
-    floor.rotation.y += 0.01;
-	roof.rotation.y += 0.01;
-	roof2.rotation.y += 0.01;
+    FLOOR.rotation.y += 0.01;
+	ROOF.rotation.y += 0.01;
+	ROOF2.rotation.y += 0.01;
 	
-	pivot1.rotation.y += 0.01;
-    pivot2.rotation.y += 0.01;
-    pivot3.rotation.y += 0.01;
-    pivot4.rotation.y += 0.01;
-    pivot5.rotation.y += 0.01;
+	AXIS1
+.rotation.y += 0.01;
+    AXIS2.rotation.y += 0.01;
+    AXIS3.rotation.y += 0.01;
+    AXIS4
+.rotation.y += 0.01;
+    AXIS5.rotation.y += 0.01;
     
 
 }
